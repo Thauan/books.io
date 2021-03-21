@@ -1,42 +1,48 @@
-// eslint-disable-next-line no-use-before-define
-import React from 'react';
-import {
-  Container,
-  AuthBox,
-  ContainerLogo,
-  Logo,
-  Subtitle,
-  InputLabel,
-  FloatLabel,
-  InputTextField,
-  ButtonSignIn,
-  Column6,
-  ContentColumn,
-} from './style';
-import '../../App.css';
+import { useState } from 'react';
+import axios from 'axios';
+import history from '../../store/history';
+import Auth from '../../components/Auth';
+import delay from '../../utils/delay';
+import { Container } from './style';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 
-const Login: React.FC = () => {
+export interface LoginProps {
+  loading: boolean;
+  logged: boolean;
+  history?: any;
+}
+
+const Login: React.FC<LoginProps> = () => {
+  const { height } = useWindowDimensions();
+  const [loading, setLoading]: any = useState(false);
+  const [logged, setLogged]: any = useState(false);
+
+  const fetchAuth: any = async () => {
+    setLoading(true);
+
+    axios
+      .post('https://books.ioasys.com.br/api/v1/auth/sign-in', {
+        email: 'desafio@ioasys.com.br',
+        password: '12341234',
+      })
+      .then(function (response) {
+        setLogged(true);
+        delay(450);
+        localStorage.setItem('auth@token', response.headers.authorization);
+        setLoading(false);
+        history.push('/home');
+      })
+      .catch(function (error) {
+        setLogged(false);
+        console.log(error);
+      });
+  };
+
+  console.log(localStorage.getItem('auth@token'));
+
   return (
-    <Container>
-      <AuthBox>
-        <ContainerLogo>
-          <Logo />
-          <Subtitle />
-        </ContainerLogo>
-        <ContentColumn>
-          <Column6>
-            <FloatLabel>
-              <InputTextField type="email" />
-              <InputLabel>E-mail</InputLabel>
-            </FloatLabel>
-            <FloatLabel>
-              <InputTextField type="email" />
-              <InputLabel>Senha</InputLabel>
-            </FloatLabel>
-            <ButtonSignIn>Entrar</ButtonSignIn>
-          </Column6>
-        </ContentColumn>
-      </AuthBox>
+    <Container height={height}>
+      <Auth loading={loading} auth={fetchAuth} />
     </Container>
   );
 };

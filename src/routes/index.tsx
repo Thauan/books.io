@@ -1,15 +1,19 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-// eslint-disable-next-line no-use-before-define
-import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import history from '../store/history';
 import Login from '../pages/Login';
+import LibraryBooks from '../pages/LibraryBooks';
 
-const Routes = () => {
+const Routes: any = () => {
   return (
     <Router history={history}>
-      <Route path="/" component={Login} />
-      <Route path="/login" component={Login} />
+      <Route
+        render={({ location }) => (
+          <Switch location={location}>
+            <Route exact path="/" component={Login} />
+            <Route path="/home" component={LibraryBooks} />
+          </Switch>
+        )}
+      />
     </Router>
   );
 };

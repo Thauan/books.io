@@ -11,6 +11,6 @@ export const ButtonSignIn = styled.button`
   height: 36px;
   position: absolute;
   top: 24rem;
-  left: 20rem;
+  left: 22rem;
   outline: 0;
 `;

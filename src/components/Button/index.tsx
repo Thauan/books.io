@@ -6,13 +6,13 @@ import Loader from '../Loader';
 
 interface ButtonProps {
   loading: boolean;
-  onClick: void;
+  onClick: any;
 }
 
-const Button: React.FC<ButtonProps> = ({ loading, onClick }: ButtonProps) => {
-  return (
-    <ButtonSignIn>{loading === true ? 'Entrar' : <Loader />}</ButtonSignIn>
-  );
-};
+const Button: React.FC<ButtonProps> = ({ loading, onClick }: ButtonProps) => (
+  <ButtonSignIn onClick={onClick}>
+    {loading === false ? 'Entrar' : <Loader />}
+  </ButtonSignIn>
+);
 
 export default Button;

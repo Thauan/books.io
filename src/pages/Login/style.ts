@@ -2,15 +2,23 @@ import styled from 'styled-components';
 import background from '../../assets/bg.png';
 import logo from '../../assets/Logo.svg';
 import subtitle from '../../assets/Title.svg';
-import pixeltovw from '../../utils/pixeltovw';
+// import pixeltovw from '../../utils/pixeltovw';
+// import viewportWindow from '../../utils/viewportWindow';
 
-export const Container = styled.div`
+interface StyleProps {
+  height: any;
+}
+
+// ${pixeltovw((props: { height: any }) => props.height)};
+
+export const Container = styled.div<StyleProps>`
   width: auto;
   background-color: black;
   background-image: url(${background});
   background-size: cover;
+  background-position: center;
   padding: 2rem;
-  height: ${pixeltovw(654)};
+  height: ${(props) => props.height - 64}px;
 `;
 
 export const Column6 = styled.div`
@@ -32,21 +40,6 @@ export const ContainerLogo = styled.div`
   justify-content: center;
   align-items: center;
   width: 21rem;
-`;
-
-export const ButtonSignIn = styled.button`
-  color: #b22e6f;
-  background: #fff;
-  font-size: 1em;
-  margin: 1em;
-  border: 0;
-  border-radius: 1rem;
-  width: 85px;
-  height: 36px;
-  position: absolute;
-  top: 24rem;
-  left: 20rem;
-  outline: 0;
 `;
 
 export const Logo = styled.div`
@@ -82,12 +75,14 @@ export const FloatLabel = styled.div`
 
 export const InputTextField = styled.input`
   width: 368px;
-  height: 60px;
+  height: 45px;
   outline: 0;
   border: 1px solid #000;
   color: white;
+  padding: 1rem 1rem 0 1rem;
   border-radius: 4px;
   background: #000000;
+  color: #fff;
   opacity: 0.5;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -101,5 +96,5 @@ export const InputLabel = styled.label`
   pointer-events: none;
   position: absolute;
   opacity: 0.5;
-  transform: translate(0, 10px) scale(1);
+  transform: translate(0, 7px) scale(1);
 `;
