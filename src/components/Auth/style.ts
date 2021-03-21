@@ -6,7 +6,7 @@ import subtitle from '../../assets/Title.svg';
 // import viewportWindow from '../../utils/viewportWindow';
 
 interface StyleProps {
-  height: any;
+  height: number;
 }
 
 // ${pixeltovw((props: { height: any }) => props.height)};
@@ -19,6 +19,11 @@ export const Container = styled.div<StyleProps>`
   background-position: center;
   padding: 2rem;
   height: ${(props) => props.height - 64}px;
+
+  @media (max-width: 650px) {
+    height: ${(props) => props.height * 2}px;
+    width: fit-content;
+  }
 `;
 
 export const Column6 = styled.div`

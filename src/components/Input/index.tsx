@@ -6,9 +6,17 @@ export interface InputProps {
   label: string;
   type?: string;
   name: string;
+  rest?: any;
+  value?: any;
 }
 
-const Input: React.FC<InputProps> = ({ label, name, type }: any) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  name,
+  type,
+  value,
+  ...rest
+}: any) => {
   const inputRef = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -25,8 +33,9 @@ const Input: React.FC<InputProps> = ({ label, name, type }: any) => {
       <InputTextField
         type={type}
         onChange={(e) => e.target.value}
+        defaultValue={value}
         ref={inputRef}
-        value="123"
+        {...rest}
       />
       <InputLabel>{label}</InputLabel>
     </FloatLabel>

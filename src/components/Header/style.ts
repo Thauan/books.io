@@ -1,11 +1,6 @@
 import styled from 'styled-components';
-import background from '../../assets/bg-home.png';
 import logo from '../../assets/Logo-black.svg';
 import subtitle from '../../assets/Title-black.svg';
-
-interface StyleProps {
-  height: any;
-}
 
 export const BoxActions = styled.div`
   padding: 2rem;
