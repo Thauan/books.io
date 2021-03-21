@@ -29,16 +29,21 @@ const Input: React.FC<InputProps> = ({
   }, [inputRef, registerField]);
 
   return (
-    <FloatLabel>
-      <InputTextField
-        type={type}
-        onChange={(e) => e.target.value}
-        defaultValue={value}
-        ref={inputRef}
-        {...rest}
-      />
-      <InputLabel>{label}</InputLabel>
-    </FloatLabel>
+    <div>
+      <FloatLabel>
+        <InputTextField
+          type={type}
+          onChange={(e) => e.target.value}
+          defaultValue={value}
+          ref={inputRef}
+          {...rest}
+        />
+        <InputLabel>{label}</InputLabel>
+      </FloatLabel>
+      {error && (
+        <span style={{ color: '#fff', position: 'absolute' }}>{error}</span>
+      )}
+    </div>
   );
 };
 

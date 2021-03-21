@@ -3,6 +3,7 @@ import { createActions, createReducer } from 'reduxsauce';
 export const { Types, Creators } = createActions({
   asyncLogin: ['email', 'password'],
   errorLogin: ['message'],
+  asyncRedirectLogged: null,
   errorClear: null,
   userLogout: null,
 });

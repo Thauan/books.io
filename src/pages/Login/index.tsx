@@ -1,9 +1,9 @@
-import { useState } from 'react';
-// import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Auth from '../../components/Auth';
 import { Container } from './style';
 import useWindowDimensions from '../../utils/useWindowDimensions';
+import { isAuthenticated } from '../../utils/storage';
 
 export interface LoginProps {
   loading: boolean;
@@ -14,31 +14,20 @@ export interface LoginProps {
 const Login: React.FC<LoginProps> = () => {
   const { height } = useWindowDimensions();
   const [loading, setLoading]: any = useState(false);
-  // const [logged, setLogged]: any = useState(false);
-
   const dispatch = useDispatch();
+
+  const isAuth = (): any =>
+    isAuthenticated() ? dispatch({ type: 'ASYNC_REDIRECT_LOGGED' }) : null;
+
+  useEffect(() => {
+    isAuth();
+  }, []);
 
   const fetchAuth: any = async (data: any) => {
     setLoading(true);
 
     dispatch({ type: 'ERROR_CLEAR' });
     dispatch({ type: 'ASYNC_LOGIN', payload: data });
-    // axios
-    //   .post('https://books.ioasys.com.br/api/v1/auth/sign-in', {
-    //     email: 'desafio@ioasys.com.br',
-    //     password: '12341234',
-    //   })
-    //   .then(function (response) {
-    //     setLogged(true);
-    //     delay(450);
-    //     localStorage.setItem('auth@token', response.headers.authorization);
-    //     setLoading(false);
-    //     history.push('/home');
-    //   })
-    //   .catch(function (error) {
-    //     setLogged(false);
-    //     console.log(error);
-    //   });
   };
 
   return (

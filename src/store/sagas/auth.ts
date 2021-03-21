@@ -1,5 +1,6 @@
 import { put, call } from 'redux-saga/effects';
-import { login, getToken } from '../../utils/storage';
+import { login } from '../../utils/storage';
+import history from '../history';
 import api from '../../services/api';
 
 export function* asyncAuth({ payload }: any): any {
@@ -13,10 +14,12 @@ export function* asyncAuth({ payload }: any): any {
 
     login([headers.authorization]);
 
-    const token = getToken();
-
-    console.log(token);
+    yield call(history.push, '/home');
   } catch (error) {
     console.log(error);
   }
+}
+
+export function* isAuth(): any {
+  yield call(history.push, '/home');
 }

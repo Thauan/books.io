@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { VscSignOut } from 'react-icons/vsc';
+import { logout, isAuthenticated } from '../../utils/storage';
+import history from '../../store/history';
 import {
   ContainerLogo,
   Logo,
@@ -11,6 +14,16 @@ import {
 } from './style';
 
 const Header: React.FC = () => {
+  const isAuth = (): any => (isAuthenticated() ? null : history.push('/'));
+  const Logout = (): any => {
+    logout();
+    history.push('/');
+  };
+
+  useEffect(() => {
+    isAuth();
+  }, []);
+
   return (
     <HeaderBox>
       <ContainerLogo>
@@ -20,7 +33,7 @@ const Header: React.FC = () => {
       <BoxActions>
         <Welcome>Bem vindo, </Welcome>
         <Username>Thauan</Username>
-        <ButtonSignOut>
+        <ButtonSignOut onClick={Logout}>
           <VscSignOut />
         </ButtonSignOut>
       </BoxActions>
