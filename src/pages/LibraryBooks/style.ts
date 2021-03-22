@@ -102,7 +102,7 @@ export const ButtonSignOut = styled.button`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 250px 250px 250px;
+  grid-template-rows: 220px 220px 220px;
   grid-gap: 1rem;
 
   @media (max-width: 650px) {

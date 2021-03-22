@@ -24,7 +24,7 @@ export const Welcome = styled.h4`
 export const HeaderBox = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 1rem;
+  padding: 1rem 0;
   justify-content: space-between;
   align-items: center;
   width: 100%;

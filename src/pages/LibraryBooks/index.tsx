@@ -21,6 +21,7 @@ import useWindowDimensions from '../../utils/useWindowDimensions';
 import Header from '../../components/Header';
 import Modal from '../../components/Modal';
 import BookItem from '../../components/BookItem';
+import BookItemDetail from '../../components/BookItemDetail';
 
 const LibraryBooks: React.FC = () => {
   const { height, width } = useWindowDimensions();
@@ -51,7 +52,7 @@ const LibraryBooks: React.FC = () => {
       {showModal ? (
         <ContainerModal height={height}>
           <Modal onClose={ToggleModal} show={showModal}>
-            <CoverBook src={bookDetail.imageUrl} />
+            <BookItemDetail book={bookDetail} />
           </Modal>
         </ContainerModal>
       ) : (
