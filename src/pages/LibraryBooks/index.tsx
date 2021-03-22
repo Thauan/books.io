@@ -14,11 +14,12 @@ const LibraryBooks: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const books = useSelector((state: any) => state.books.books);
-  const bookDetail = useSelector((state: any) => state.books.bookDetail);
   const isLoading = useSelector((state: any) => state.loading.isLoading);
+  const bookDetail = useSelector((state: any) => state.books.bookDetail);
   const isLoadingBook = useSelector(
     (state: any) => state.loading.isLoadingBook,
   );
+
   const getBooks = (page: number): any =>
     dispatch({ type: 'ASYNC_BOOKS', payload: page });
 
