@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import Modal from '../../components/Modal';
 import BookItem from '../../components/BookItem';
 import BookItemDetail from '../../components/BookItemDetail';
+import Footer from '../../components/Footer';
 
 const LibraryBooks: React.FC = () => {
   const { height } = useWindowDimensions();
@@ -16,7 +17,7 @@ const LibraryBooks: React.FC = () => {
   const bookDetail = useSelector((state: any) => state.books.bookDetail);
   const isLoading = useSelector((state: any) => state.loading.isLoading);
   const dispatch = useDispatch();
-  const getBooks = (): any => dispatch({ type: 'ASYNC_BOOKS' });
+  const getBooks = (): any => dispatch({ type: 'ASYNC_BOOKS', payload: 1 });
 
   const ToggleModal: any = () => {
     setShowModal(!showModal);
@@ -25,6 +26,14 @@ const LibraryBooks: React.FC = () => {
   const getBookDetails: any = (id: any) => {
     dispatch({ type: 'ASYNC_BOOK_DETAILS', payload: id });
     ToggleModal();
+  };
+
+  const getNextBookPage: any = (page?: any) => {
+    dispatch({ type: 'ASYNC_BOOKS', payload: page + 1 });
+  };
+
+  const getPrevBookPage: any = (page?: any) => {
+    dispatch({ type: 'ASYNC_BOOKS', payload: page - 1 });
   };
 
   useEffect(() => {
@@ -45,9 +54,17 @@ const LibraryBooks: React.FC = () => {
       <Container height={height}>
         <Header />
         {books.data && !isLoading && books.data !== undefined ? (
-          <Grid>
-            <BookItem books={books} getBookDetails={getBookDetails} />
-          </Grid>
+          <>
+            <Grid>
+              <BookItem books={books} getBookDetails={getBookDetails} />
+            </Grid>
+            <Footer
+              pageInitial={books.page}
+              pageTotal={books.totalPages}
+              nextPage={getNextBookPage}
+              prevPage={getPrevBookPage}
+            />
+          </>
         ) : (
           <BoxLoading height={height}>
             <LoaderPage />

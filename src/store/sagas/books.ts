@@ -2,13 +2,13 @@ import { put, call } from 'redux-saga/effects';
 import history from '../history';
 import api from '../../services/api';
 
-export function* asyncGetBooks(): any {
+export function* asyncGetBooks({ payload }: any): any {
   try {
     yield put({ type: 'SET_LOADING', load: true });
 
     const { data } = yield call(
       api.get,
-      '/books?page=1&amount=12&category=biographies',
+      `/books?page=${payload}&amount=12&category=biographies`,
     );
 
     yield put({ type: 'SET_BOOKS', books: data });

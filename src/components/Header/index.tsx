@@ -15,13 +15,14 @@ import {
 import { logout, isAuthenticated } from '../../utils/storage';
 
 const Header: React.FC = () => {
-  const userData = useSelector((state: any) => state.auth.userData);
+  // const userData = useSelector((state: any) => state.auth.userData);
   const isAuth = (): any => (isAuthenticated() ? null : history.push('/'));
   const Logout = (): any => {
     logout();
     history.push('/');
   };
 
+  const username = localStorage.getItem('@username');
   useEffect(() => {
     isAuth();
   }, []);
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
       </ContainerLogo>
       <BoxActions>
         <Welcome>Bem vindo, </Welcome>
-        <Username>{userData ? userData.name : ''}</Username>
+        <Username>{username || ''}</Username>
         <ButtonSignOut onClick={Logout}>
           <VscSignOut />
         </ButtonSignOut>
