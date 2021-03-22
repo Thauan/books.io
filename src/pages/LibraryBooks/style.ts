@@ -28,6 +28,10 @@ export const ContainerModal = styled.div<StyleProps>`
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   height: ${(props) => props.height}px;
+
+  @media (max-width: 650px) {
+    padding: 1rem;
+  }
 `;
 
 export const BoxActions = styled.div`

@@ -14,6 +14,8 @@ export function* asyncAuth({ payload }: any): any {
 
     login([headers.authorization]);
 
+    yield put({ type: 'SET_USER_DATA', userData: data });
+
     yield call(history.push, '/home');
   } catch (error) {
     yield put({

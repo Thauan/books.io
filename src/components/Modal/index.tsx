@@ -1,4 +1,13 @@
-import { ContainerModal, Content } from './style';
+import {
+  ContainerModal,
+  Content,
+  BoxLoading,
+  HeaderModal,
+  Container,
+  ButtonClose,
+} from './style';
+import useWindowDimensions from '../../utils/useWindowDimensions';
+import LoaderPage from '../LoaderPage';
 
 export interface ModalProps {
   show: boolean;
@@ -7,13 +16,23 @@ export interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ show, onClose, children }: any) => {
-  if (!show) {
-    return null;
-  }
+  const { height } = useWindowDimensions();
+
   return (
-    <ContainerModal id="modal">
-      <Content>{children}</Content>
-    </ContainerModal>
+    <Container height={height}>
+      <HeaderModal>
+        <ButtonClose onClick={onClose}>X</ButtonClose>
+      </HeaderModal>
+      <ContainerModal id="modal">
+        {!show ? (
+          <BoxLoading height={height}>
+            <LoaderPage />
+          </BoxLoading>
+        ) : (
+          <Content>{children}</Content>
+        )}
+      </ContainerModal>
+    </Container>
   );
 };
 

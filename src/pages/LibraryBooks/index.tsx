@@ -1,21 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Container,
-  Grid,
-  Item,
-  BookName,
-  BoxLoading,
-  AuthorName,
-  CoverBook,
-  Informations,
-  BookInfos,
-  PageCount,
-  Publisher,
-  PublishedAt,
-  ContainerModal,
-} from './style';
+import { Container, Grid, BoxLoading, ContainerModal } from './style';
 import LoaderPage from '../../components/LoaderPage';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 import Header from '../../components/Header';
@@ -24,7 +10,7 @@ import BookItem from '../../components/BookItem';
 import BookItemDetail from '../../components/BookItemDetail';
 
 const LibraryBooks: React.FC = () => {
-  const { height, width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
   const [showModal, setShowModal] = useState(false);
   const books = useSelector((state: any) => state.books.books);
   const bookDetail = useSelector((state: any) => state.books.bookDetail);
@@ -45,12 +31,10 @@ const LibraryBooks: React.FC = () => {
     getBooks();
   }, []);
 
-  console.log(bookDetail);
-
   return (
     <>
       {showModal ? (
-        <ContainerModal height={height}>
+        <ContainerModal height={height} onClick={ToggleModal}>
           <Modal onClose={ToggleModal} show={showModal}>
             <BookItemDetail book={bookDetail} />
           </Modal>

@@ -65,18 +65,8 @@ const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
       <ContentColumn>
         <Column6>
           <Form onSubmit={handleSubmit} ref={formRef}>
-            <Input
-              name="email"
-              type="email"
-              value="desafio@ioasys.com.br"
-              label="E-mail"
-            />
-            <Input
-              name="password"
-              type="password"
-              value="12341234"
-              label="Senha"
-            />
+            <Input name="email" type="email" label="E-mail" />
+            <Input name="password" type="password" label="Senha" />
             <Button loading={loading} type="submit" onClick={false} />
             <ErrorToltip error={errors} />
           </Form>

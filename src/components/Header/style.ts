@@ -18,6 +18,7 @@ export const Username = styled.h4`
 
 export const Welcome = styled.h4`
   font-size: 12px;
+  margin-right: 5px;
   color: #333333;
 `;
 
@@ -69,6 +70,7 @@ export const Subtitle = styled.div`
 `;
 
 export const ButtonSignOut = styled.button`
+  cursor: pointer;
   background: transparent;
   font-size: 1em;
   margin: 1em;

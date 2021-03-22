@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonSignIn = styled.button`
+  cursor: pointer;
   color: #b22e6f;
   background: #fff;
   font-size: 1em;

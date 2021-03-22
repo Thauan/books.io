@@ -18,7 +18,7 @@ export const BookName = styled.h1`
   line-height: 40px;
 `;
 
-export const AuthorName = styled.h3`
+export const AuthorName = styled.h1`
   color: #ab2680;
   font-style: normal;
   font-weight: 400;
@@ -28,7 +28,7 @@ export const AuthorName = styled.h3`
   margin: 0.2rem 0.5rem 0.5rem 0;
 `;
 
-export const Authors = styled.h3`
+export const Authors = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -38,8 +38,8 @@ export const CoverBook = styled.img`
   filter: drop-shadow(0px 6px 9px rgba(0, 0, 0, 0.15));
 
   @media (max-width: 650px) {
-    height: 30rem;
-    width: 20rem;
+    height: 21rem;
+    width: 15rem;
     flex-direction: column;
   }
 `;
@@ -96,6 +96,30 @@ export const PublishedAt = styled.div`
 `;
 
 export const Language = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999999;
+`;
+
+export const TitleOriginal = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999999;
+`;
+
+export const ISBN10 = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999999;
+`;
+
+export const ISBN13 = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

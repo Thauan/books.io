@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { VscSignOut } from 'react-icons/vsc';
-import { logout, isAuthenticated } from '../../utils/storage';
+import { useSelector } from 'react-redux';
 import history from '../../store/history';
 import {
   ContainerLogo,
@@ -12,8 +12,10 @@ import {
   HeaderBox,
   ButtonSignOut,
 } from './style';
+import { logout, isAuthenticated } from '../../utils/storage';
 
 const Header: React.FC = () => {
+  const userData = useSelector((state: any) => state.auth.userData);
   const isAuth = (): any => (isAuthenticated() ? null : history.push('/'));
   const Logout = (): any => {
     logout();
@@ -32,7 +34,7 @@ const Header: React.FC = () => {
       </ContainerLogo>
       <BoxActions>
         <Welcome>Bem vindo, </Welcome>
-        <Username>Thauan</Username>
+        <Username>{userData ? userData.name : ''}</Username>
         <ButtonSignOut onClick={Logout}>
           <VscSignOut />
         </ButtonSignOut>

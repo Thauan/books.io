@@ -4,12 +4,17 @@ export const { Types, Creators } = createActions({
   asyncLogin: ['email', 'password'],
   errorLogin: ['message'],
   asyncRedirectLogged: null,
+  setUserData: {},
   errorClear: null,
-  userLogout: null,
 });
 
 export const INITIAL_STATE = {
   MessagesError: '',
+  userData: {},
+};
+
+export const setUserData = (state = INITIAL_STATE, action: any): any => {
+  return { ...state, userData: action.userData };
 };
 
 export const errorLogin = (state = INITIAL_STATE, action: any): any => {
@@ -21,6 +26,7 @@ export const errorClear = (state = INITIAL_STATE): any => {
 };
 
 export default createReducer(INITIAL_STATE, {
+  [Types.SET_USER_DATA]: setUserData,
   [Types.ERROR_LOGIN]: errorLogin,
   [Types.ERROR_CLEAR]: errorClear,
 });

@@ -20,7 +20,6 @@ export function* asyncGetBooks(): any {
 }
 
 export function* asyncGetBookDetail({ payload }: any): any {
-  console.log(payload);
   try {
     const { data } = yield call(api.get, `/books/${payload}`);
 
