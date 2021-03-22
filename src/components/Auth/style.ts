@@ -60,8 +60,12 @@ export const Subtitle = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   height: 33px;
-  width: inherit;
+  width: 14rem;
   margin-bottom: 0.2rem;
+
+  @media (max-width: 650px) {
+    width: 17rem;
+  }
 `;
 
 export const AuthBox = styled.div`
