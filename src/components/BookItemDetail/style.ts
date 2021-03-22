@@ -20,7 +20,12 @@ export const AuthorName = styled.h3`
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
-  margin: 0;
+  margin: 0.2rem 0.5rem 0.5rem 0;
+`;
+
+export const Authors = styled.h3`
+  display: flex;
+  flex-direction: row;
 `;
 
 export const CoverBook = styled.img`
@@ -32,11 +37,27 @@ export const Informations = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  width: -webkit-fill-available;
 `;
 
 export const BookInfos = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
+`;
+
+export const InfoItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const TitleInfoItem = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #3333333;
 `;
 
 export const PageCount = styled.div`
@@ -58,6 +79,32 @@ export const Publisher = styled.div`
 export const PublishedAt = styled.div`
   font-style: normal;
   font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999999;
+`;
+
+export const TitleInformations = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #333333;
+`;
+
+export const TitleReview = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #333333;
+`;
+
+export const Review = styled.div`
+  font-style: normal;
+  font-weight: 500;
   font-size: 12px;
   line-height: 20px;
   color: #999999;

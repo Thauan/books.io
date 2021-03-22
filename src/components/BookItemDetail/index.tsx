@@ -8,6 +8,12 @@ import {
   PageCount,
   Publisher,
   PublishedAt,
+  Authors,
+  TitleInformations,
+  TitleReview,
+  Review,
+  InfoItem,
+  TitleInfoItem,
 } from './style';
 
 interface DetailProps {
@@ -20,13 +26,29 @@ const BookItemDetail: React.FC<DetailProps> = ({ book }: any): any => {
       <CoverBook src={book.imageUrl} />
       <Informations>
         <BookName>{book.title}</BookName>
-        {book.authors &&
-          book.authors.map((author: any) => <AuthorName>{author}</AuthorName>)}
+        <Authors>
+          {book.authors &&
+            book.authors.map((author: any) => (
+              <AuthorName>{author}</AuthorName>
+            ))}
+        </Authors>
+        <TitleInformations>Informações</TitleInformations>
         <BookInfos>
-          <PageCount>{book.pageCount} páginas</PageCount>
-          <Publisher>Editora Loyola</Publisher>
-          <PublishedAt>Publicado em {book.published} </PublishedAt>
+          <InfoItem>
+            <TitleInfoItem>Paginas:</TitleInfoItem>
+            <PageCount>{book.pageCount} páginas</PageCount>
+          </InfoItem>
+          <InfoItem>
+            <TitleInfoItem>Editora:</TitleInfoItem>
+            <Publisher>Editora Loyola</Publisher>
+          </InfoItem>
+          <InfoItem>
+            <TitleInfoItem>Publicação:</TitleInfoItem>
+            <PublishedAt>Publicado em {book.published} </PublishedAt>
+          </InfoItem>
         </BookInfos>
+        <TitleReview>Resenha da editora</TitleReview>
+        <Review>{book.description}</Review>
       </Informations>
     </ContainerDetail>
   );
