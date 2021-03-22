@@ -21,9 +21,13 @@ export function* asyncGetBooks({ payload }: any): any {
 
 export function* asyncGetBookDetail({ payload }: any): any {
   try {
+    yield put({ type: 'SET_LOADING_BOOK', load: true });
+
     const { data } = yield call(api.get, `/books/${payload}`);
 
     yield put({ type: 'SET_BOOK_DETAIL', bookDetail: data });
+
+    yield put({ type: 'SET_LOADING_BOOK', load: false });
   } catch (error) {
     console.log(error);
   }

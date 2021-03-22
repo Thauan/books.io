@@ -16,6 +16,9 @@ const LibraryBooks: React.FC = () => {
   const books = useSelector((state: any) => state.books.books);
   const bookDetail = useSelector((state: any) => state.books.bookDetail);
   const isLoading = useSelector((state: any) => state.loading.isLoading);
+  const isLoadingBook = useSelector(
+    (state: any) => state.loading.isLoadingBook,
+  );
   const dispatch = useDispatch();
   const getBooks = (): any => dispatch({ type: 'ASYNC_BOOKS', payload: 1 });
 
@@ -45,7 +48,11 @@ const LibraryBooks: React.FC = () => {
       {showModal ? (
         <ContainerModal height={height} onClick={ToggleModal}>
           <Modal onClose={ToggleModal} show={showModal}>
-            <BookItemDetail book={bookDetail} />
+            {!isLoadingBook ? (
+              <BookItemDetail book={bookDetail} />
+            ) : (
+              <LoaderPage />
+            )}
           </Modal>
         </ContainerModal>
       ) : (
