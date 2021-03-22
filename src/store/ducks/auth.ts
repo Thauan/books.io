@@ -9,15 +9,15 @@ export const { Types, Creators } = createActions({
 });
 
 export const INITIAL_STATE = {
-  error: false,
+  MessagesError: '',
 };
 
 export const errorLogin = (state = INITIAL_STATE, action: any): any => {
-  return { ...state, error: action.message };
+  return { ...state, MessagesError: action.message };
 };
 
 export const errorClear = (state = INITIAL_STATE): any => {
-  return { ...state, error: false };
+  return { ...state, MessagesError: [] };
 };
 
 export default createReducer(INITIAL_STATE, {

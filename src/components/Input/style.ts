@@ -10,7 +10,7 @@ export const FloatLabel = styled.div`
 
 export const InputTextField = styled.input`
   width: 368px;
-  height: 45px;
+  height: 65px;
   outline: 0;
   border: 1px solid #000;
   color: white;

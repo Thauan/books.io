@@ -16,7 +16,10 @@ export function* asyncAuth({ payload }: any): any {
 
     yield call(history.push, '/home');
   } catch (error) {
-    console.log(error);
+    yield put({
+      type: 'ERROR_LOGIN',
+      message: 'Usuário ou senha inválida.',
+    });
   }
 }
 

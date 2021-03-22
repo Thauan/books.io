@@ -1,10 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Form } from '@unform/web';
 import { useRef, useState } from 'react';
 import * as Yup from 'yup';
 import Button from '../Button';
 import Input from '../Input';
 import ErrorToltip from '../ErrorToltip';
-
 import {
   AuthBox,
   ContainerLogo,
@@ -21,6 +21,9 @@ export interface AuthProps {
 
 const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
   const formRef: any = useRef(null);
+  const messagesAuthError: any = useSelector(
+    (state: any) => state.auth.MessagesError,
+  );
   const [errors, setErrors] = useState([]);
 
   const handleSubmit: any = async (data: any, { reset }: any) => {
@@ -35,7 +38,9 @@ const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
       auth(data);
+
       reset();
     } catch (error: any) {
       if (error instanceof Yup.ValidationError) {
@@ -46,8 +51,6 @@ const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
           errorMessages[index] = { message };
         });
 
-        console.log(errorMessages);
-        // formRef.current.setErrors(errorMessages);
         setErrors(errorMessages);
       }
     }

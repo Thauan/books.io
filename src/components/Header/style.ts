@@ -40,7 +40,12 @@ export const ContainerLogo = styled.div`
   padding: 2rem;
   justify-content: center;
   align-items: center;
-  width: 21rem;
+  width: 31rem;
+
+  @media (max-width: 650px) {
+    width: 21rem;
+    padding: 1rem;
+  }
 `;
 
 export const Logo = styled.div`
@@ -58,6 +63,9 @@ export const Subtitle = styled.div`
   height: 33px;
   width: inherit;
   margin-bottom: 0.2rem;
+  @media (max-width: 650px) {
+    width: 17rem;
+  }
 `;
 
 export const ButtonSignOut = styled.button`

@@ -1,46 +1,75 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { Container, Grid, Item, BookName } from './style';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  Container,
+  Grid,
+  Item,
+  BookName,
+  BoxLoading,
+  AuthorName,
+  CoverBook,
+  Informations,
+  BookInfos,
+  PageCount,
+  Publisher,
+  PublishedAt,
+  ContainerModal,
+} from './style';
+import LoaderPage from '../../components/LoaderPage';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 import Header from '../../components/Header';
+import Modal from '../../components/Modal';
+import BookItem from '../../components/BookItem';
 
 const LibraryBooks: React.FC = () => {
   const { height, width } = useWindowDimensions();
-  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const books = useSelector((state: any) => state.books.books);
+  const bookDetail = useSelector((state: any) => state.books.bookDetail);
+  const isLoading = useSelector((state: any) => state.loading.isLoading);
+  const dispatch = useDispatch();
+  const getBooks = (): any => dispatch({ type: 'ASYNC_BOOKS' });
 
-  const getBooks = (): any => {
-    // axios
-    //   .get('https://books.ioasys.com.br/api/v1/auth/sign-in', {
-    //     email: 'desafio@ioasys.com.br',
-    //     password: '12341234',
-    //   })
-    //   .then(function (response) {
-    //     setLoading(true);
-    //     delay(450);
-    //     localStorage.setItem('auth@token', response.headers.authorization);
-    //     setLoading(false);
-    //     history.push('/home');
-    //   })
-    //   .catch(function (error) {
-    //     setLogged(false);
-    //     console.log(error);
-    //   });
+  const ToggleModal: any = () => {
+    setShowModal(!showModal);
   };
 
+  const getBookDetails: any = (id: any) => {
+    dispatch({ type: 'ASYNC_BOOK_DETAILS', payload: id });
+    ToggleModal();
+  };
+
+  useEffect(() => {
+    getBooks();
+  }, []);
+
+  console.log(bookDetail);
+
   return (
-    <Container height={height}>
-      <Header />
-      <Grid>
-        <Item>
-          <BookName>Crossing the Chasm</BookName>
-        </Item>
-        <Item>2</Item>
-        <Item>3</Item>
-        <Item>4</Item>
-        <Item>5</Item>
-        <Item>6</Item>
-      </Grid>
-    </Container>
+    <>
+      {showModal ? (
+        <ContainerModal height={height}>
+          <Modal onClose={ToggleModal} show={showModal}>
+            <CoverBook src={bookDetail.imageUrl} />
+          </Modal>
+        </ContainerModal>
+      ) : (
+        <></>
+      )}
+      <Container height={height}>
+        <Header />
+        {books.data && !isLoading && books.data !== undefined ? (
+          <Grid>
+            <BookItem books={books} getBookDetails={getBookDetails} />
+          </Grid>
+        ) : (
+          <BoxLoading height={height}>
+            <LoaderPage />
+          </BoxLoading>
+        )}
+      </Container>
+    </>
   );
 };
 
