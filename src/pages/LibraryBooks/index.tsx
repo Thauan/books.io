@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { Container, Grid, BoxLoading, ContainerModal } from './style';
 import LoaderPage from '../../components/LoaderPage';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 import Header from '../../components/Header';
@@ -9,18 +7,20 @@ import Modal from '../../components/Modal';
 import BookItem from '../../components/BookItem';
 import BookItemDetail from '../../components/BookItemDetail';
 import Footer from '../../components/Footer';
+import { Container, Grid, BoxLoading, ContainerModal } from './style';
 
 const LibraryBooks: React.FC = () => {
   const { height } = useWindowDimensions();
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
   const books = useSelector((state: any) => state.books.books);
   const bookDetail = useSelector((state: any) => state.books.bookDetail);
   const isLoading = useSelector((state: any) => state.loading.isLoading);
   const isLoadingBook = useSelector(
     (state: any) => state.loading.isLoadingBook,
   );
-  const dispatch = useDispatch();
-  const getBooks = (): any => dispatch({ type: 'ASYNC_BOOKS', payload: 1 });
+  const getBooks = (page: number): any =>
+    dispatch({ type: 'ASYNC_BOOKS', payload: page });
 
   const ToggleModal: any = () => {
     setShowModal(!showModal);
@@ -40,7 +40,7 @@ const LibraryBooks: React.FC = () => {
   };
 
   useEffect(() => {
-    getBooks();
+    getBooks(1);
   }, []);
 
   return (
