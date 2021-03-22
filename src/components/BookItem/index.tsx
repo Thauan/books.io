@@ -25,7 +25,7 @@ const BookItem: React.FC<ItemProps> = ({ books, getBookDetails }: any) => {
             <BookName>{book.title}</BookName>
             {book.authors &&
               book.authors.map((author: any) => (
-                <AuthorName>{author}</AuthorName>
+                <AuthorName key={Math.random()}>{author}</AuthorName>
               ))}
             <BookInfos>
               <PageCount>{book.pageCount} páginas</PageCount>

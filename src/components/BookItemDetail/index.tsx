@@ -14,6 +14,7 @@ import {
   Review,
   InfoItem,
   TitleInfoItem,
+  Language,
 } from './style';
 
 interface DetailProps {
@@ -29,7 +30,7 @@ const BookItemDetail: React.FC<DetailProps> = ({ book }: any): any => {
         <Authors>
           {book.authors &&
             book.authors.map((author: any) => (
-              <AuthorName>{author}</AuthorName>
+              <AuthorName key={Math.random()}>{author}</AuthorName>
             ))}
         </Authors>
         <TitleInformations>Informações</TitleInformations>
@@ -45,6 +46,10 @@ const BookItemDetail: React.FC<DetailProps> = ({ book }: any): any => {
           <InfoItem>
             <TitleInfoItem>Publicação:</TitleInfoItem>
             <PublishedAt>Publicado em {book.published} </PublishedAt>
+          </InfoItem>
+          <InfoItem>
+            <TitleInfoItem>Idioma:</TitleInfoItem>
+            <Language>{book.language} </Language>
           </InfoItem>
         </BookInfos>
         <TitleReview>Resenha da editora</TitleReview>

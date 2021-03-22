@@ -4,6 +4,11 @@ export const ContainerDetail = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 650px) {
+    width: fit-content;
+    flex-direction: column;
+  }
 `;
 
 export const BookName = styled.h1`
@@ -31,6 +36,12 @@ export const Authors = styled.h3`
 export const CoverBook = styled.img`
   height: auto;
   filter: drop-shadow(0px 6px 9px rgba(0, 0, 0, 0.15));
+
+  @media (max-width: 650px) {
+    height: 30rem;
+    width: 20rem;
+    flex-direction: column;
+  }
 `;
 
 export const Informations = styled.div`
@@ -77,6 +88,14 @@ export const Publisher = styled.div`
 `;
 
 export const PublishedAt = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #999999;
+`;
+
+export const Language = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
