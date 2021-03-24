@@ -8,6 +8,7 @@ export interface InputProps {
   name: string;
   rest?: any;
   value?: any;
+  clear?: any;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -15,6 +16,7 @@ const Input: React.FC<InputProps> = ({
   name,
   type,
   value,
+  clear,
   ...rest
 }: any) => {
   const inputRef = useRef(null);
@@ -28,12 +30,18 @@ const Input: React.FC<InputProps> = ({
     });
   }, [inputRef, registerField]);
 
+  const handleInputChange: any = (inputValue: any): any => {
+    const inputText = inputValue;
+    clear();
+    return inputText;
+  };
+
   return (
     <div>
       <FloatLabel>
         <InputTextField
           type={type}
-          onChange={(e) => e.target.value}
+          onChange={(e) => handleInputChange(e.target.value)}
           defaultValue={value}
           ref={inputRef}
           {...rest}

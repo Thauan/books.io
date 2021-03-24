@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Auth from '../../components/Auth';
 import { Container } from './style';
 import useWindowDimensions from '../../utils/useWindowDimensions';
-import { isAuthenticated } from '../../utils/storage';
+// import { isAuthenticated } from '../../utils/storage';
 
 export interface LoginProps {
   loading: boolean;
@@ -15,13 +15,6 @@ const Login: React.FC<LoginProps> = () => {
   const { height } = useWindowDimensions();
   const [loading, setLoading]: any = useState(false);
   const dispatch = useDispatch();
-
-  const isAuth = (): any =>
-    isAuthenticated() ? dispatch({ type: 'ASYNC_REDIRECT_LOGGED' }) : null;
-
-  useEffect(() => {
-    isAuth();
-  }, []);
 
   const fetchAuth: any = async (data: any) => {
     setLoading(true);

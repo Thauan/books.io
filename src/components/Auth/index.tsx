@@ -56,6 +56,10 @@ const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
     }
   };
 
+  const clearErrors: any = async () => {
+    setErrors([]);
+  };
+
   return (
     <AuthBox>
       <ContainerLogo>
@@ -65,8 +69,18 @@ const Auth: React.FC<AuthProps> = ({ loading, auth }: any) => {
       <ContentColumn>
         <Column6>
           <Form onSubmit={handleSubmit} ref={formRef}>
-            <Input name="email" type="email" label="E-mail" />
-            <Input name="password" type="password" label="Senha" />
+            <Input
+              name="email"
+              clear={clearErrors}
+              type="email"
+              label="E-mail"
+            />
+            <Input
+              name="password"
+              clear={clearErrors}
+              type="password"
+              label="Senha"
+            />
             <Button loading={loading} type="submit" onClick={false} />
             <ErrorToltip error={errors} />
           </Form>
